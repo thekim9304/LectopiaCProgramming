@@ -1,4 +1,4 @@
-#if 1
+#if 01
 #include <stdio.h>
 
 int input();
@@ -41,7 +41,7 @@ int yearCheck(int year)
 void outputYear(int year, int result)
 {
 	if (result == 1)
-		printf("%d년은 윤년(Leap year)입니다.", year);
+		printf("%d년은 윤년(Leap year)입니다.", year); 
 	else
 		printf("%d년은 평년(Common year)입니다.", year);
 }
