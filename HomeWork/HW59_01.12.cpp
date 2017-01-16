@@ -9,6 +9,7 @@
 #if 0
 #include <stdio.h>
 #include <stdlib.h>
+#include <time.h>
 
 int random(int);
 void numReset(int(*)[4]);
@@ -61,7 +62,7 @@ void numReset(int (*num)[4])
 	{
 		for (j = 0; j < 4; j++)
 		{
-			//srand((unsigned int)time(NULL));
+			srand((unsigned int)time(NULL));
 			num[i][j] = random(9) + 1;
 		}
 	}
