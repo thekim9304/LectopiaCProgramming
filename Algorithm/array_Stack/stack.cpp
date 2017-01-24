@@ -96,7 +96,7 @@ void printStack(const Stack *sPtr, void (*print)(DataType *p))  //0번 방부터 찍�
 		printf("Stack이 비어 있습니다.\n");
 	else
 	{
-		for (i = 0; i < sPtr->top; i++)
+		for (i = sPtr->top - 1; i >= 0; i--)
 			printf("%d ", sPtr->stack[i]);
 	}
 	printf("\n");
