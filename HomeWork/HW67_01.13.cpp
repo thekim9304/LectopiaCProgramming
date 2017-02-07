@@ -1,11 +1,11 @@
 /*
-	!! ¼­·Î ´Ù¸¥ ¼öÀÇ °³¼ö Ãâ·ÂÇÏ±â
+	!! ï¿½ï¿½ï¿½ï¿½ ï¿½Ù¸ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ï±ï¿½
 
-	n°³ÀÇ ¼ö¸¦ ÀÔ·ÂÀ¸·Î ¹Ş¾Æ ¼­¸¥ ´Ù¸¥ ¼öÀÇ °³¼ö¸¦ ±¸ÇÏ´Â ÇÁ·Î±×·¥
+	nï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½Ô·ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ş¾ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½Ù¸ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½Ï´ï¿½ ï¿½ï¿½ï¿½Î±×·ï¿½
 
 	@2017.01.14 pm05:38
 */
-#if 0
+#if 1
 #include <stdio.h>
 #define SIZE 1000
 
@@ -29,13 +29,13 @@ int main()
 		inputNum(num, count);
 		numCompare(num, count);
 		countNum = numCheck(num, count);
-		resultOutput(countNum);
+		resultOutput(countNum); // ì´ëŸ°ê±´ í•¨ìˆ˜ call í•˜ë©´ì„œ ì™“ë‹¤ê°“ë‹¤ í•˜ëŠ”ê²Œ ë” ë¹„íš¨ìœ¨ì ì„ ê·¸ëƒ¥ ì•ˆìœ¼ë¡œ~
 	}
 }
 
 void resultOutput(int count)
 {
-	printf(" ¼­·Î ´Ù¸¥ ¼öÀÇ °³¼ö : %d\n\n", count);
+	printf(" ï¿½ï¿½ï¿½ï¿½ ï¿½Ù¸ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ : %d\n\n", count);
 }
 
 int numCheck(int *num, int cnt)
@@ -71,8 +71,8 @@ void inputNum(int *num, int cnt)
 {
 	int i, ret;
 
-	printf("* ¼ıÀÚ ÀÔ·Â : ");
-	
+	printf("* ï¿½ï¿½ï¿½ï¿½ ï¿½Ô·ï¿½ : ");
+
 	for (i = 0; i < cnt; i++)
 	{
 		ret = scanf("%d", &num[i]);
@@ -83,10 +83,10 @@ int inputCount()
 {
 	int input, ret;
 
-	printf("* ÀÔ·ÂÇÒ ¼ıÀÚÀÇ °³¼ö : ");
+	printf("* ï¿½Ô·ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ : ");
 	ret = scanf("%d", &input);
 
-	if (ret == 0)
+	if (ret == 0) // ë¹„ì¢…ë£Œëª…ì‹œ
 		return -1;
 
 	return input;

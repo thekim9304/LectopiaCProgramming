@@ -1,13 +1,13 @@
 /*
-	!!ÃÖ´ë°ª, ÃÖ¼Ò°ª Ã£±â(2)
+	!!ï¿½Ö´ë°ª, ï¿½Ö¼Ò°ï¿½ Ã£ï¿½ï¿½(2)
 
-	int ary[100] ¹è¿­¿¡ µ¥ÀÌÅÍ¸¦ ¿øÇÏ´Â ¸¸Å­ µ¥ÀÌÅÍ¸¦ ÀÔ·Â ¹Ş¾Æ ±× ¼ö Áß¿¡ ÃÖ´ë°ª°ú ÃÖ¼Ò°ªÀ» ±¸ÇÏ¿© Ãâ·ÂÇÏ½Ã¿À.
-	ÀÌ¶§ ÃÖ´ë°ª°ú ÃÖ¼Ò°ª¾Æ °¢°¢ ¸î ¹øÂ°¿´´ÂÁöµµ ÇÔ²² ±¸ÇÏ¿© Ãâ·ÂÇÏ´Â ÇÁ·Î±×·¥ ÀÛ¼º
-	¹İº¹ ¼öÇàÇÏ°í ¹®ÀÚ ÀÔ·Â½Ã Á¾·á (sort ±â´É »ç¿ëx)
+	int ary[100] ï¿½è¿­ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Í¸ï¿½ ï¿½ï¿½ï¿½Ï´ï¿½ ï¿½ï¿½Å­ ï¿½ï¿½ï¿½ï¿½ï¿½Í¸ï¿½ ï¿½Ô·ï¿½ ï¿½Ş¾ï¿½ ï¿½ï¿½ ï¿½ï¿½ ï¿½ß¿ï¿½ ï¿½Ö´ë°ªï¿½ï¿½ ï¿½Ö¼Ò°ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½Ï¿ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ï½Ã¿ï¿½.
+	ï¿½Ì¶ï¿½ ï¿½Ö´ë°ªï¿½ï¿½ ï¿½Ö¼Ò°ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ ï¿½ï¿½Â°ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ô²ï¿½ ï¿½ï¿½ï¿½Ï¿ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ï´ï¿½ ï¿½ï¿½ï¿½Î±×·ï¿½ ï¿½Û¼ï¿½
+	ï¿½İºï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ï°ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½Ô·Â½ï¿½ ï¿½ï¿½ï¿½ï¿½ (sort ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½x)
 
 	@2017.01.13 pm06:18
 */
-#if 0
+#if 1
 #include <stdio.h>
 
 int inputArray(int*);
@@ -26,6 +26,10 @@ int main()
 		if (aryLength == -1)
 			break;
 
+/**
+ * ì´ë ‡ê²Œ í•˜ë©´ ë°°ì—´ì˜ ê¸¸ì´ n ë§Œí¼ì„ 2ë²ˆëŒì•„ì•¼ í•˜ê¸° ë–„ë¬¸ì— O(2n) ì˜ ì‹œê°„ì´ ê±¸ë¦¼
+ * í•˜ì§€ë§Œ max ì™€ minì„ í•œë²ˆì— ëŒë¦¬ë©´ O(n) ê±¸ë¦¼
+ */
 		max = maxCalculator(ary, aryLength, &indexMax);
 		min = minCalculator(ary, aryLength, &indexMin);
 
@@ -36,10 +40,42 @@ int main()
 	//outputMaxMin(max, min);
 }
 
+#define COMMENT
+#ifdef COMMENT
+
+void calculator(int* minIndex, int* maxIndex, int *mmArray, int aryLength, int *indexMax)
+{
+	int storage;
+	int i;
+
+	storage = mmArray[0];
+
+  int min = MAX_INT;//ê¹Œë¨¹ìŒ
+  int max = 0;
+
+	for (i = 1; i < aryLength; i++) // ì—¬ê¸°ì„œ í•œë²ˆë§Œ ëŒì•„ì„œ ëë‚¼ ìˆ˜ ìˆìŒ
+	{
+    if (mmArray[i] < min)
+    {
+      min = mmArray[i];
+      *minIndex = i;
+    }
+    else if (mmArray[i] > max)
+    {
+        max = mmArray[i];
+        *maxIndex = i;
+    }
+	}
+
+	return;
+}
+
+#endif
+
 void outputMaxMin(int max, int min, int *indexMax, int *indexMin)
 {
-	printf("\n°¡Àå Å« °ª : %d(index:%d) / ", max, *indexMax);
-	printf("°¡Àå ÀÛÀº °ª : %d(index:%d)\n\n", min, *indexMin);
+	printf("\nï¿½ï¿½ï¿½ï¿½ Å« ï¿½ï¿½ : %d(index:%d) / ", max, *indexMax);
+	printf("ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ : %d(index:%d)\n\n", min, *indexMin);
 }
 
 int maxCalculator(int *mmArray, int aryLength, int *indexMax)
@@ -84,7 +120,7 @@ int inputArray(int *mmArray)
 {
 	int i = 0, ret;
 
-	printf("* Á¤¼ö ÀÔ·Â : ");
+	printf("* ï¿½ï¿½ï¿½ï¿½ ï¿½Ô·ï¿½ : ");
 
 	while (1)
 	{
@@ -102,7 +138,7 @@ int inputArray(int *mmArray)
 	return i;
 	/*while (1)
 	{
-	printf("%d ¹ø ¹æ °ª : ", i);
+	printf("%d ï¿½ï¿½ ï¿½ï¿½ ï¿½ï¿½ : ", i);
 	scanf("%d", &mmArray[i]);
 
 	i++;
