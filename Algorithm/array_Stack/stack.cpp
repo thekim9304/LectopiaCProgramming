@@ -57,6 +57,10 @@ inData - 스택에 저장할 데이터
 --------------------------------------------------------------------------------------*/
 int push(Stack *sPtr, DataType inData) /* stack에 데이터 저장하기 */
 {
+	int i;
+
+	sPtr->stack[i] = asd;
+
 	if (isStackFull(sPtr) == 0)
 	{
 		sPtr->stack[sPtr->top] = inData;
