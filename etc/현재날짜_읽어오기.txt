@@ -1,0 +1,35 @@
+#include <time.h> 
+#include<windows.h> 
+#include<stdio.h> 
+
+struct date {
+	unsigned int da_year;
+	unsigned int da_mon;
+	unsigned int da_day;
+};
+
+void getdate(struct date *);
+
+int main()
+{
+	struct date stdate;
+	getdate(&stdate);
+	printf("%u 년 %u 월 %u일\n", stdate.da_year, stdate.da_mon, stdate.da_day);
+	return 0;
+}
+
+void getdate(struct date *p) // 원본 데이터를 변환할수 있도록 Call by pointer 기법 사용 
+{
+
+	char temp[128];
+	char *cp, syear[5] = "20";
+	_strdate(temp); // temp char배열 안에 08/10/04(월/일/년)순으로 년월일이 문자열 상태로 저장 
+	cp = strtok(temp, "/"); // temp배열의 첫번째 '/'까지 문자열를 끊어내어 cp에게 "08" 문자열의 시작주소를 리턴 
+	p->da_mon = atoi(cp); // 끊어낸 "08"문자열을 정수형 데이터 8로 변환하여 p->da_mon에 저장 
+	cp = strtok(NULL, "/"); // temp배열의 두번째 '/'까지 문자열를 끊어내어 cp에게 "10" 문자열의 시작주소를 리턴 
+	p->da_day = atoi(cp); // 끊어낸 "10"문자열을 정수형 데이터 10로 변환하여 p->da_day에 저장 
+	cp = strtok(NULL, "/"); // temp배열의 세번째 '/'까지 문자열를 끊어내려하나 '/'은 나타나지 않고 문자열이 
+							// 끝나게 되므로 남은 문자열 전체를 리턴한다 즉, cp에게 "04" 문자열의 시작주소가 리턴한다. 
+	strcat(syear, cp); // syear내의 "20"과 cp가 가리키는 "04"을 붙여서 "2004" 문자열을 syear변수에 저장 
+	p->da_year = atoi(syear); // syear내의 "2004" 문자열을 정수형 데이터 2004로 변환하여 p->da_year에 저장 
+}

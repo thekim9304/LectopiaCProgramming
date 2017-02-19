@@ -1,0 +1,43 @@
+	
+
+#include <time.h> //_strtime()를 위해서 인클루드 함 
+#include<windows.h> // strtok(), atoi()를 위해서 인클루드 함 
+#include<stdio.h> 
+
+struct time {
+    unsigned int ti_hour;
+    unsigned int ti_min;
+    unsigned int ti_sec;
+};
+
+void gettime(struct time *);
+
+int main()
+{
+    struct time sttime;
+    gettime(&sttime);
+    printf("%u 시 %u 분 %u초 \\n", sttime.ti_hour, sttime.ti_min, sttime.ti_sec);
+    getchar();
+    return 0;
+}
+
+void gettime(struct time *p) // 원본 데이터를 변환할수 있도록 Call by pointer 기법 사용 
+{
+
+    char temp[30];
+    char *cp;
+    _strtime(temp); // temp char배열 안에 00:00:00(시:분:초)순의 문자열 상태로 저장 
+
+    cp = strtok(temp, ":"); // temp배열의 첫번째 ':'까지 문자열를 끊어내어 cp에게 시에 해당하는 문자열의 시작주소를 리턴 
+
+    p->ti_hour = atoi(cp); // 끊어낸 시에 해당하는 문자열을 정수형 데이터로 변환하여 p->ti_hour에 저장 
+
+    cp = strtok(NULL, ":"); // temp배열의 두번째 ':'까지 문자열를 끊어내어 cp에게 분에 해당하는 문자열의 시작주소를 리턴 
+
+    p->ti_min = atoi(cp); // 끊어낸 분에 해당하는 문자열을 정수형 데이터로 변환하여 p->ti_min에 저장 
+
+    cp = strtok(NULL, ":"); // temp배열의 세번째 ':'까지 문자열를 끊어내려하나 ':'은 나타나지 않고 문자열이 
+                            // 끝나게 되므로 남은 문자열 전체를 리턴한다 즉, cp에게 초에 해당하는 문자열의 시작주소가 리턴한다. 
+
+    p->ti_sec = atoi(cp); // 끊어낸 초에 해당하는 문자열을 정수형 데이터로 변환하여 p->ti_sec에 저장 
+}
