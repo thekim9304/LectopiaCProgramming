@@ -236,9 +236,9 @@ void work(Robot *robotList, int robotNum)
 				ret = -1;
 			}
 
-			if (ret == -1) {
 				cout << "목록에 있는 할일을 입력 하세요!!" << endl;
 				my_flush();
+			if (ret == -1) {
 				continue;
 			}
 

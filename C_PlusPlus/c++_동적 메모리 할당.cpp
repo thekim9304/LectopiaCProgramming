@@ -22,6 +22,8 @@ int main()
 	input(student, stuCnt, subCnt);
 
 	output(student, stuCnt, subCnt);
+
+	//mydelete(student, stuCnt, subCnt);
 }
 
 int** myAlloc(const int stuCnt, const int subCnt)
