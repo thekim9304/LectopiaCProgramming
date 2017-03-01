@@ -22,6 +22,7 @@ int MakeBlock::makeBlock_Arr[4][4] = { 0, };
 void deleteCursor();  // 커서 없애기
 void checkGround(int(*ground_Arr)[22], int *groundCheck);
 void deleteGround(int(*ground_Arr)[22], int*groundCheck);
+bool checkEndLine(int (*ground_Arr)[22], int(*endLine_Arr));
 
 int main()
 {
@@ -43,6 +44,7 @@ int main()
 	retD = viewBlock.makeBlock(block.makeBlock_Arr);
 	while (1) {
 		
+
 		viewBlock.viewBlock(block.makeBlock_Arr);
 		viewBlock.viewPredict(block.makeBlock_Arr, view, block.endLine_Arr);
 		viewBlock.viewGround(block.ground_Arr);
@@ -66,12 +68,20 @@ int main()
 			viewBlock.clearPredict(view);
 			retD = viewBlock.makeBlock(block.makeBlock_Arr);
 
+			if (checkEndLine(block.ground_Arr, block.endLine_Arr))
+				break;
+
 			viewBlock.clearGround(block.ground_Arr);
 			checkGround(block.ground_Arr, groundCheck);
 			deleteGround(block.ground_Arr, groundCheck);
 			block.plusEndline(block.ground_Arr, block.endLine_Arr);
 		}
 	}
+
+	basicScreen.gotoxy(30, 12);
+	cout << "게임 끝났습니다...";
+
+	getchar();
 }
 
 void deleteCursor()
@@ -125,4 +135,14 @@ void deleteGround(int(*ground_Arr)[22], int*groundCheck)
 			groundCheck[i] = 0;
 		}
 	}
+}
+
+bool checkEndLine(int(*ground_Arr)[22], int(*endLine_Arr))
+{
+	for (int i = 0; i < 24; i += 2) {
+		if (ground_Arr[i][1] == 1)
+			return true;
+	}
+
+	return false;
 }
