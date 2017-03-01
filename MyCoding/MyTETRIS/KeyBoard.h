@@ -18,7 +18,7 @@ public:
 	char getKey();
 	char inKey(int *keyFlag);
 
-	void directionKey(int (*)[4], int(*)[22], int *, int blockNum);
+	void directionKey(int (*)[4], int(*)[22], int *, int blockNum, int (*view)[4]);
 	void upArrow(int(*)[4], int blockNum);
 	void downArrow(int(*)[4], int(*)[22], int *, int blockNum);
 	void leftArrow(int(*)[4], int(*)[22], int *);

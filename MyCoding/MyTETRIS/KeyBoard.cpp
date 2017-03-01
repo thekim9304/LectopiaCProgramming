@@ -11,7 +11,7 @@ KeyBoard::~KeyBoard()
 {
 }
 
-void KeyBoard::directionKey(int(*makeBlock_Arr)[4], int(*ground_Arr)[22], int *endline_Arr, int blockNum)
+void KeyBoard::directionKey(int(*makeBlock_Arr)[4], int(*ground_Arr)[22], int *endline_Arr, int blockNum, int (*view)[4])
 {
 	char ch;
 	int kFlag;
@@ -21,22 +21,27 @@ void KeyBoard::directionKey(int(*makeBlock_Arr)[4], int(*ground_Arr)[22], int *e
 	switch (ch) {
 	case UP_ARROW:
 		clearBlock(makeBlock_Arr);
+		clearPredict(view);
 		upArrow(makeBlock_Arr, blockNum);
 		break;
 	case DOWN_ARROW:
 		clearBlock(makeBlock_Arr);
+		clearPredict(view);
 		downArrow(makeBlock_Arr, ground_Arr, endline_Arr, blockNum);
 		break;
 	case LEFT_ARROW:
 		clearBlock(makeBlock_Arr);
+		clearPredict(view);
 		leftArrow(makeBlock_Arr, ground_Arr, endline_Arr);
 		break;
 	case RIGHT_ARROW:
 		clearBlock(makeBlock_Arr);
+		clearPredict(view);
 		rightArrow(makeBlock_Arr, endline_Arr);
 		break;
 	case SPACE_BAR:
 		clearBlock(makeBlock_Arr);
+		clearPredict(view);
 		spaceBar(makeBlock_Arr, endline_Arr, blockNum);
 		break;
 	default:

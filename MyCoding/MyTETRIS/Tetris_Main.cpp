@@ -32,6 +32,7 @@ int main()
 	int ret, retD;
 	int nowTime, ingTime;
 	int groundCheck[22] = { 0, };
+	int view[4][4];
 
 	deleteCursor();
 
@@ -43,23 +44,26 @@ int main()
 	while (1) {
 		
 		viewBlock.viewBlock(block.makeBlock_Arr);
+		viewBlock.viewPredict(block.makeBlock_Arr, view, block.endLine_Arr);
 		viewBlock.viewGround(block.ground_Arr);
 
-		keyBoard.directionKey(block.makeBlock_Arr, block.ground_Arr, block.endLine_Arr, retD);
+		keyBoard.directionKey(block.makeBlock_Arr, block.ground_Arr, block.endLine_Arr, retD, view);
 
 		nowTime = keyBoard.nowTime();
 
 		if ((nowTime - ingTime) > 1) {
-			viewBlock.blockAutoDown(block.makeBlock_Arr, block.ground_Arr, block.endLine_Arr);
+			viewBlock.blockAutoDown(block.makeBlock_Arr, block.ground_Arr, block.endLine_Arr, view);
 			ingTime = keyBoard.nowTime();
 		}
 
 		viewBlock.viewBlock(block.makeBlock_Arr);
+		viewBlock.viewPredict(block.makeBlock_Arr, view, block.endLine_Arr);
 
 		ret = block.checkGround(block.makeBlock_Arr, block.ground_Arr, block.endLine_Arr);
 
 	    if (ret == true) {
 			viewBlock.plusGround(block.makeBlock_Arr, block.ground_Arr, block.endLine_Arr);
+			viewBlock.clearPredict(view);
 			retD = viewBlock.makeBlock(block.makeBlock_Arr);
 
 			viewBlock.clearGround(block.ground_Arr);
