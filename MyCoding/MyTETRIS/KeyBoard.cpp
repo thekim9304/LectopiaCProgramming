@@ -164,9 +164,9 @@ void KeyBoard::spaceBar(int(*makeBlock_Arr)[4], int *endline_Arr, int blockNum) 
 
 char KeyBoard::getKey()
 {
-	if (kbhit())
+	if (_kbhit())
 	{
-		return getch();
+		return _getch();
 	}
 	return '\0';
 }
@@ -178,7 +178,7 @@ char KeyBoard::inKey(int *keyFlag)
 	ascii = getKey(); // 입력된 문자의 아스키코드를 입력받아옴 
 	if (ascii != '\0') {
 		if (ascii == -32 || ascii == 0) { // 입력된 문자의 아스키코드가 -32이거나 0이면 특수키가 입력된것임 
-			scan = getch(); // 특수키가 입력되었을때에는 scan code값을 입력받아옴 
+			scan = _getch(); // 특수키가 입력되었을때에는 scan code값을 입력받아옴 
 			*keyFlag = SPECIAL_KEY;
 			return (scan);
 		}
